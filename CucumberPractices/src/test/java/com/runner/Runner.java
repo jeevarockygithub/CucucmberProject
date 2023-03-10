@@ -10,7 +10,8 @@ import io.cucumber.junit.CucumberOptions;
 				features="src\\test\\resources\\Features",
 				glue = "com.stepDefinition",
 				monochrome = true,
-//				dryRun=true,
+				//dryRun=true,
+				tags= {"@All"},
 				plugin = {"pretty","html:Reports\\HTMLreport"}
 				
 					
