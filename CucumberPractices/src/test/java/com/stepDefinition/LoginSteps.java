@@ -2,6 +2,7 @@ package com.stepDefinition;
 
 import java.time.Duration;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -27,11 +28,11 @@ public class LoginSteps {
 		
 	}
 
-	@When("user enters username and password")
-	public void user_enters_username_and_password() {
+	  @When("^user enters (.*) and (.*)$")
+	    public void user_enters_something_and_something(String username, String password) {
 		System.out.println("== Step2: User enter username and password ==");
-		driver.findElement(By.xpath("//input[@placeholder='Username']")).sendKeys("Admin");
-		driver.findElement(By.xpath("//input[@placeholder='Password']")).sendKeys("admin123");
+		driver.findElement(By.xpath("//input[@placeholder='Username']")).sendKeys(username);
+		driver.findElement(By.xpath("//input[@placeholder='Password']")).sendKeys(password);
 	}
 
 	@When("Click on login button")
@@ -44,7 +45,9 @@ public class LoginSteps {
 	@Then("user should navigates to home page")
 	public void user_should_navigates_to_home_page() {
 		System.out.println("== Step4: User lands on home page ==");
+		Assert.assertTrue(driver.findElement(By.xpath("//h6[normalize-space()='Dashboard']")).isDisplayed());
 		driver.close();
+		
 
 }
 }
