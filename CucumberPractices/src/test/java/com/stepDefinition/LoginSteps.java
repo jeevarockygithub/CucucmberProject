@@ -1,12 +1,15 @@
 package com.stepDefinition;
 
 import java.time.Duration;
+import java.util.List;
+import java.util.Map;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -47,7 +50,16 @@ public class LoginSteps {
 		System.out.println("== Step4: User lands on home page ==");
 		Assert.assertTrue(driver.findElement(By.xpath("//h6[normalize-space()='Dashboard']")).isDisplayed());
 		driver.close();
+		}
+	
+	@When("user enters credentails using DataTable")
+	public void user_enters_credentails_using_DataTable(DataTable dataTable) {
+		System.out.println("== Step2: User enter username and password ==");
+		List<List<String>> data = dataTable.cells();
+		driver.findElement(By.xpath("//input[@placeholder='Username']")).sendKeys(data.get(0).get(0));
 		
-
-}
+		
+		driver.findElement(By.xpath("//input[@placeholder='Password']")).sendKeys(data.get(0).get(1));
+	
+	}
 }

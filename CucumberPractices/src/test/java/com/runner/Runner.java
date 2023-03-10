@@ -10,7 +10,9 @@ import io.cucumber.junit.CucumberOptions;
 				features="src\\test\\resources\\Features",
 				glue = "com.stepDefinition",
 				monochrome = true,
+//				dryRun=true,
 				plugin = {"pretty","html:Reports\\HTMLreport"}
+				
 					
 						)
 public class Runner {
